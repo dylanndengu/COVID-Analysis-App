@@ -161,7 +161,7 @@ def geolocate(country):
         return np.nan
 
 
-st.subheader("Dataset with country code")
+#st.subheader("Dataset with country code")
 dropped_countries = ["Unknown","Holy See (Vatican City State)","Korea, Democratic People's Republic of", "Palestine, State of","Georgia"]
 
 
@@ -170,10 +170,10 @@ located_countries = combined_table
 for country in dropped_countries:
     located_countries = located_countries[~located_countries["CountryNames"].isin([country])]
 
-print(located_countries.shape)
+#print(located_countries.shape)
 
 located_countries = located_countries.reset_index(drop=True)
-st.dataframe(located_countries)
+#st.dataframe(located_countries)
 
 located_countries["Latitude"] = ""
 located_countries["Longitude"] = ""
