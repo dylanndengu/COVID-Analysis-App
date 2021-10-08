@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import streamlit as st
+import streamlit_folium import folium_static
 import seaborn as sns
 import matplotlib.pyplot as plt
 import plotly.express as px
@@ -209,5 +210,5 @@ for i in range(len(located_countries)):
         folium.Marker(location = [lat, long], radius=radius, popup= popup_text, fill =True, prefer_canvas=True).add_to(marker_cluster)
 #show the map
 
-st.write(world_map)
+folium_static(world_map)
 map_load_state.text("Map Loaded")
