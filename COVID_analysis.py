@@ -185,7 +185,7 @@ located_countries["Longitude"] = ""
 country_list = list(located_countries["CountryNames"])
 
 st.subheader("New Cases and Deaths In The Past 7 Days")
-map_load_state = st.text('Loading Map...')
+map_load_state = st.text('Loading Map (Please wait for 2 minutes)...')
 
 i=0
 for countryname in country_list:
