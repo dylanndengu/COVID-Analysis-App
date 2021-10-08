@@ -10,7 +10,6 @@ from folium.plugins import MarkerCluster
 from pycountry_convert import country_alpha2_to_country_name
 from geopy.geocoders import Nominatim
 import requests_cache
-requests_cache.install_cache('geopy_cache')
 
 
 st.title('Dylan Ndengu\'s COVID Analysis App')
@@ -152,7 +151,7 @@ def get_countryname(code):
 combined_table["CountryNames"] = combined_table["Country_code"].map(get_countryname)
 combined_table = combined_table.drop(columns="index")
 
-
+requests_cache.install_cache('geopy_cache')
 geolocator = Nominatim(user_agent="COVID_analysis5")
 # adding 1 second padding between calls
 def geolocate(country):
@@ -164,7 +163,7 @@ def geolocate(country):
     except:
         # Return missing value
         return np.nan
-
+requests_cache.uninstall_cache()
 
 #st.subheader("Dataset with country code")
 dropped_countries = ["Unknown","Holy See (Vatican City State)","Korea, Democratic People's Republic of", "Palestine, State of","Georgia"]
