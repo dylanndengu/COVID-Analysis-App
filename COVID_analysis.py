@@ -9,7 +9,9 @@ import folium
 from folium.plugins import MarkerCluster
 from pycountry_convert import country_alpha2_to_country_name
 from geopy.geocoders import Nominatim
-from geopy.extra.rate_limiter import RateLimiter
+import requests_cache
+requests_cache.install_cache('geopy_cache')
+
 
 st.title('Dylan Ndengu\'s COVID Analysis App')
 
@@ -152,7 +154,6 @@ combined_table = combined_table.drop(columns="index")
 
 
 geolocator = Nominatim(user_agent="COVID_analysis5")
-geocode = RateLimiter(geolocator.geocode, min_delay_seconds = 1,   return_value_on_exception = None) 
 # adding 1 second padding between calls
 def geolocate(country):
     try:
@@ -185,7 +186,7 @@ located_countries["Longitude"] = ""
 country_list = list(located_countries["CountryNames"])
 
 st.subheader("New Cases and Deaths In The Past 7 Days")
-map_load_state = st.text('Loading Map (Please wait for 2 minutes)...')
+map_load_state = st.text('Loading Map...')
 
 i=0
 for countryname in country_list:
