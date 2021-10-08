@@ -9,6 +9,7 @@ import folium
 from folium.plugins import MarkerCluster
 from pycountry_convert import country_alpha2_to_country_name
 from geopy.geocoders import Nominatim
+from geopy.extra.rate_limiter import RateLimiter
 
 st.title('Dylan Ndengu\'s COVID Analysis App')
 
@@ -151,6 +152,8 @@ combined_table = combined_table.drop(columns="index")
 
 
 geolocator = Nominatim(user_agent="COVID_analysis5")
+geocode = RateLimiter(geolocator.geocode, min_delay_seconds = 1,   return_value_on_exception = None) 
+# adding 1 second padding between calls
 def geolocate(country):
     try:
         # Geolocate the center of the country
