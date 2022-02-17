@@ -152,7 +152,7 @@ combined_table["CountryNames"] = combined_table["Country_code"].map(get_countryn
 combined_table = combined_table.drop(columns="index")
 
 requests_cache.install_cache('geopy_cache')
-geolocator = Nominatim(user_agent="COVID_analysis5")
+geolocator = Nominatim(user_agent="COVID_analysis6")
 # adding 1 second padding between calls
 def geolocate(country):
     try:
